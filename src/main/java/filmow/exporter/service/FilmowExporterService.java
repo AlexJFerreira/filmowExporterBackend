@@ -60,7 +60,7 @@ public class FilmowExporterService {
 		final Integer pagesNumber = getTotalOfPages(rootHtmlUserPage);
 		
 		logger.info("Iniciando recuperação de dados iniciais dos filmes");
-		for (int pageIndex = 1; pageIndex <= 2; pageIndex++) {
+		for (int pageIndex = 1; pageIndex <= pagesNumber; pageIndex++) {
 			logger.info("Recuperando página {}/{}",pageIndex,pagesNumber);
 
 			String paginafilmes = getHtmlPage(getFormatedUrl(ALREADY_WATCHED_MOVIES_URL_WITH_INDEX,filmowUserName,valueOf(pageIndex)));
