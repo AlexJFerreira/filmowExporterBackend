@@ -50,7 +50,7 @@ public class FilmowExporterService {
 	private static final Logger logger = LoggerFactory.getLogger(FilmowExporterService.class);
 
 		
-	public void retrieMoviesCSV(String filmowUserName) throws IOException {
+	public void retrieMoviesCSV(String filmowUserName, String userEmail) throws IOException {
 		logger.info("Iniciando recuperação de filmes no filmow para arquivo CSV");
 		final Map<String, String> mapaFilmes = new HashMap<String, String>();
         final List<Triple<String, String, String>> dadosFilmes = new ArrayList<>();
@@ -95,7 +95,8 @@ public class FilmowExporterService {
 		File csv = generateCSV(dadosFilmes);
 		
 		try {
-			emailService.sendEmailWithAttachment(csv);
+			logger.info("Iniciando envio de e-mail para o endereço: {}", userEmail);
+			emailService.sendEmailWithAttachment(csv,userEmail,filmowUserName);
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

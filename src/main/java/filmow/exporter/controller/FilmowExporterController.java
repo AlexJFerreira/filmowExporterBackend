@@ -18,9 +18,9 @@ public class FilmowExporterController {
 	@Autowired
 	FilmowExporterService exporterService;
 	
-	@GetMapping("/user/{filmowUserName}")
-	public ResponseEntity<Object> retrieveProfileMoviesCSVfileWithRattings(@PathVariable String filmowUserName) throws IOException {
-		exporterService.retrieMoviesCSV(filmowUserName);
+	@GetMapping("/user/{filmowUserName}/email/{userEmail}")
+	public ResponseEntity<Object> retrieveProfileMoviesCSVfileWithRattings(@PathVariable String filmowUserName,@PathVariable String userEmail) throws IOException {
+		exporterService.retrieMoviesCSV(filmowUserName,userEmail);
 		return ResponseEntity.ok().build();
 
 	}
