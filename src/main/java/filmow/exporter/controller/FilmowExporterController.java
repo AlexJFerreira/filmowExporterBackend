@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import filmow.exporter.service.FilmowExporterService;
 
@@ -18,8 +18,8 @@ public class FilmowExporterController {
 	@Autowired
 	FilmowExporterService exporterService;
 	
-	@GetMapping("/user/{filmowUserName}/email/{userEmail}")
-	public ResponseEntity<Object> retrieveProfileMoviesCSVfileWithRattings(@PathVariable String filmowUserName,@PathVariable String userEmail) throws IOException {
+	@GetMapping("/watchedMovies")
+	public ResponseEntity<Object> retrieveProfileMoviesCSVfileWithRattings(@RequestParam("filmowUserName") String filmowUserName,@RequestParam ("userEmail") String userEmail) throws IOException {
 		exporterService.retrieMoviesCSV(filmowUserName,userEmail);
 		return ResponseEntity.ok().build();
 
